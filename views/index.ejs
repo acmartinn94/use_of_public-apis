@@ -8,7 +8,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
 </head>
 <body>
-    <header class="py-3 mb-3 border-bottom"> 
+    <header class="py-3  border-bottom"> 
     <div class="container-fluid d-grid gap-3 align-items-center" style="grid-template-columns: 1fr 2fr;"> 
         <div class="dropdown"> 
             <a href="#" class="d-flex align-items-center col-lg-4 mb-2 mb-lg-0 link-body-emphasis text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Bootstrap menu"> 
@@ -24,9 +24,16 @@
                 <li><a class="dropdown-item" href="#">Products</a></li> 
                 <li><hr class="dropdown-divider"></li> <li><a class="dropdown-item" href="#">Reports</a></li> 
                 <li><a class="dropdown-item" href="#">Analytics</a></li> </ul> </div> 
-                <div class="d-flex align-items-center"> <form class="w-100 me-3" role="search"> 
-                    <input type="search" class="form-control" placeholder="Search..." aria-label="Search"> </form> 
-                    <div class="flex-shrink-0 dropdown"> <a href="#" class="d-block link-body-emphasis text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                <div class="d-flex align-items-center"> 
+                    <form class="w-100 me-3" role="search" action="/search" method="GET">
+    <input 
+        type="search"
+        name="bebida"
+        class="form-control"
+        placeholder="Search..."
+        aria-label="Search">
+</form>
+                    <div class="flex-shrink-0 dropdown"> <a href="/search" class="d-block link-body-emphasis text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
                          <img src="https://github.com/mdo.png" alt="mdo" width="32" height="32" class="rounded-circle"> </a> 
                          <ul class="dropdown-menu text-small shadow">
                              <li><a class="dropdown-item" href="#">New project...</a></li>
@@ -38,6 +45,36 @@
                          </div> 
                         </div>
                      </header>
+                    <div class="contenido py-4">
+        <% if(!locals.drinks || locals.drinks.length === 0) { %>
+            <h2>No se encontraron bebidas.</h2>
+       
+                <%} else { %>
+                    <div class="row g-4">
+                     <% drinks.forEach(drink => { %>
+
+                        <div class="col-md-6 col-lg-4 col-xl-2 d-flex justify-content-center">
+                        <article class="card  shadow-sm card-dark drink-card">
+                            
+        
+                      
+                    
+                 
+                        <img src="<%= drink.strDrinkThumb %>" class="card-img-top img-drink" alt="<%= drink.strDrink %>">
+                
+                         <div class="card-body">
+                             <h5 class="card-title"><%= drink.strDrink %></h5>
+                        </div>
+                        
+                 
+                
+      </article>
+               
+                </div>
+                <%}) %>
+                <% } %>
+       
+    </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
 </body>
 </html>
