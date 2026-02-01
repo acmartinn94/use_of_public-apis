@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/styles/main.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+</head>
+<body>
+    <body>
+        <div class="d-flex flex-column min-vh-100 m-0 p-0">
+        <header class="py-4 mb-1  "> 
+            <div class="container-fluid d-grid gap-3 justify-content-center">
+            
+            <div class="d-flex align-items-center">
+                <form class="search-form mx-auto" role="search" action="/search" method="GET">
+                    <input 
+                        type="search"
+                        name="bebida"
+                        class="form-control"
+                        placeholder="Search..."
+                        aria-label="Search">
+                </form>
+            
+            </div> 
+            </div>
+        </header>
+
+        <div class="row flex-lg-row-reverse align-items-center g-5 gy-0 descriptionproduct ps-5 border-bottom" style="--bs-border-color: #000;"> 
+            
+            <div class="col-lg-6"> 
+                <h1 class="display-5 fw-bold tdext-body-emphasis lh-1"><%=locals.drinks[0].strDrink%></h1>
+                <h2 class="display-5 fs-4 fw-bold tdext-body-emphasis lh-1">Ingredients</h2>
+                <div class="row row-cols-3 row-cols-sm-4 row-cols-md-5 row-cols-lg-6 g-3 ">
+                    <% for(var i=0;i<=14;i++){ %>
+                        <%if(drinks[0][`strMeasure${i}`]){%>
+                            <div class="col text-center ">
+                                    <div class="ingredient-grid">
+                                        <img 
+                                            src="https://www.thecocktaildb.com/images/ingredients/<%=drinks[0][`strIngredient${i}`]%>-small.png" 
+                                            class="d-block mx-lg-auto img-fluid" 
+                                            alt="Bootstrap Themes" 
+                                            loading="lazy">
+                                    
+                               
+                                    </div>
+                                    <p class="card-text mb-0" style="font-size: 0.9rem;"><%=drinks[0][`strMeasure${i}`]+" "+drinks[0][`strIngredient${i}`]%></p>
+                                    
+                            </div> 
+                                
+
+                        <%}%>
+                
+                    <%}%>
+                </div>
+                
+                
+                <h2 class="display-5 fs-4  fw-bold tdext-body-emphasis lh-1 ps-5">Instructions</h2> 
+                <p class="ps-5"><%=drinks[0].strInstructions%></p>
+
+                
+                  
+            </div>
+            <div class="col-lg-6 drink-cards"style="height: 100%; max-width: 900px; overflow: hidden;"> 
+                <img 
+                    src="<%=drinks[0].strDrinkThumb%>" 
+                    class="d-block mx-auto img-fluid"
+                    style="width: 100%; height: 100%; object-fit: cover;margin-top: 28px;">
+                    alt="Bootstrap Themes" 
+                    width="700" 
+                    height="500" 
+                    loading="lazy">
+            </div> 
+             
+        </div>
+        <footer class="py-0 contenido-principal"> 
+            <ul class="nav justify-content-center border-bottom pb-1 mb-1"> 
+                <li class="nav-item"><a href="/drink-glosary?letter=a">A</a> / </li>
+                <li class="nav-item"><a href="/drink-glosary?letter=b">B</a> / </li> 
+                <li class="nav-item"><a href="/drink-glosary?letter=c">C</a> / </li> 
+                <li class="nav-item"><a href="/drink-glosary?letter=d">D</a> / </li>
+                <li class="nav-item"><a href="/drink-glosary?letter=e">E</a> / </li>
+                <li class="nav-item"><a href="/drink-glosary?letter=f">F</a> / </li>
+                <li class="nav-item"><a href="/drink-glosary?letter=g">G</a> / </li>
+                <li class="nav-item"><a href="/drink-glosary?letter=h">H</a> / </li>
+                <li class="nav-item"><a href="/drink-glosary?letter=i">I</a> / </li>
+                <li class="nav-item"><a href="/drink-glosary?letter=j">J</a> / </li>
+                <li class="nav-item"><a href="/drink-glosary?letter=k">K</a> / </li>
+                <li class="nav-item"><a href="/drink-glosary?letter=l">L</a> / </li>
+                <li class="nav-item"><a href="/drink-glosary?letter=m">M</a> / </li>
+                <li class="nav-item"><a href="/drink-glosary?letter=n">N</a> / </li>
+                <li class="nav-item"><a href="/drink-glosary?letter=o">O</a> / </li>
+                <li class="nav-item"><a href="/drink-glosary?letter=p">P</a> / </li>
+                <li class="nav-item"><a href="/drink-glosary?letter=q">Q</a> / </li>
+                <li class="nav-item"><a href="/drink-glosary?letter=r">R</a> / </li>
+                <li class="nav-item"><a href="/drink-glosary?letter=s">S</a> / </li>
+                <li class="nav-item"><a href="/drink-glosary?letter=t">T</a> / </li>
+                <li class="nav-item"><a href="/drink-glosary?letter=u">U</a> / </li>
+                <li class="nav-item"><a href="/drink-glosary?letter=v">V</a> / </li>
+                <li class="nav-item"><a href="/drink-glosary?letter=w">W</a> / </li>
+                <li class="nav-item"><a href="/drink-glosary?letter=x">X</a> / </li>
+                <li class="nav-item"><a href="/drink-glosary?letter=y">Y</a> / </li>
+                <li class="nav-item"><a href="/drink-glosary?letter=z">Z</a> / </li>
+                
+            </ul> 
+            <p class="text-center mb-0 text-body-secondary">© 2025 Company, Inc</p>
+         </footer>
+       </div>
+        <script 
+            src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" 
+            integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" 
+            crossorigin="anonymous">
+        </script>
+</body>
+</html>

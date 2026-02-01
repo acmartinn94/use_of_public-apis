@@ -1,15 +1,36 @@
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
+.layout {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.main-content {
+  flex: 1; /* empuja el footer hacia abajo */
+}
 header {
     background-color: #D4AF37;
+    position: relative; /* o no poner nada */
+    z-index: 800; /* opcional, para que esté arriba */
+    border-bottom: 10px solid #000;
 }
 
 header a,
 header .dropdown-toggle {
     color: white ;
 }
+.search-form {
+  width: 700px;
+  max-width: 100%;
+}
 .contenido {
     background-color: black;
     color: white;
-    min-height: 100vh;
+    min-height: 110vh;
     
 }
 .card {
@@ -103,7 +124,7 @@ La animación spin hace que el degradado rote, creando la ilusión de que el bor
 .drink-card img {
   display: block;
   width: 100%;
-  height: 150px;
+  
   object-fit: cover;
   border-radius: 10px 10px 0 0;
 }
@@ -128,4 +149,176 @@ button.drink-button img {
 
 article.card {
   margin: 0; /* remove default margins */
+}
+.drink-card-link{
+  display: block;      /* hace que el <a> respete la altura de la tarjeta */
+  text-decoration: none; /* quita el subrayado del link */
+  color: inherit;  
+
+}
+
+.descriptionproduct{
+  padding:100px 0;
+  background-color: #111;
+  color: white;
+  min-height: 100vh;
+ 
+}
+.ingredient-grid{
+  background-image: url("/images/burbuja.png"); /* ruta de tu imagen */
+  background-size: 180% auto; /* ajusta la imagen al contenedor */
+  background-repeat: no-repeat;
+  background-position: center;
+  border-radius: 1rem;
+  margin-bottom:1rem;
+}
+
+.drink-cards {
+    /*permite que los pseudo-elementos ::before y ::after se posicionen respecto a la tarjeta.*/
+   position: relative;
+  border-radius: 10px;
+  overflow: hidden;
+  background-color: #111;
+
+  display: grid;
+  place-items: center;
+  
+  
+}
+
+
+/* Borde animado permanente */
+/*::before crea un “capa” extra que actúa como el borde animado.*/
+.drink-cards::before {
+  content: "";
+  position: absolute;
+
+  inset: -3px; /* inset: -3px → hace que esta capa quede un poquito fuera de la tarjeta, formando el borde que se ve alrededor.*/
+  border-radius: 14px;
+  background: linear-gradient(var(--rotate), #d4af37, #fff3a0, #d4af37, #8c6b00);/*el borde no es sólido, es un degradado que rota gracias a la variable --rotate.*/
+  z-index: 0;
+  /*opacity: 0 → empieza invisible, solo aparece al hacer hover.*/
+  
+  animation: spin 3s linear infinite;
+  
+}
+/*::after es otra capa detrás de la tarjeta que crea un resplandor difuso.*/
+.drink-cards::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(var(--rotate), #d4af37, #fff3a0, #d4af37, #8c6b00);
+  filter: blur(15px); /* difumina el degradado, dando ese efecto de glow que “flota” alrededor. */
+  z-index: 0;/*siempre está detrás de la tarjeta y del borde (::before).*/
+  pointer-events: none;
+  animation: spin 3s linear infinite;
+  
+}
+
+/* Opcional: el contenido encima sigue visible */
+.drink-cards img {
+  display: block;
+  width: 100%;
+  max-height: 100%;  
+  object-fit: cover;
+  
+  
+  border-radius: 10px 10px 0 0;
+  position: relative;
+  z-index: 1;
+}
+@property --rotate {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+
+@keyframes spin {
+  0% { --rotate: 0deg; }
+  100% { --rotate: 360deg; }
+}
+
+footer{
+  background-color: #D4AF37;
+  max-height: 100px ;
+  
+    
+}
+footer a  {
+  text-decoration: none;
+  color:white ;
+}
+footer li {
+  text-decoration: none;
+  color:white ;
+}
+footer p{
+  
+  color:white ;
+}
+
+.contenido-principal {
+  flex-grow: 1; /* Esto hace que el contenido ocupe el espacio restante */
+}
+
+
+
+.btn-wave {
+  position: relative;
+  padding: 30px 80px;
+  background: #000;
+  border: 2px solid #D4AF37;
+  color: white;
+  overflow: hidden; /* MUY IMPORTANTE */
+  border-radius: 8px;
+  font-size: 20px;
+  cursor: pointer;
+  box-shadow: 3px 3px 0 #D4AF37;
+  font-weight: bold;
+}
+.wave-btn .btn-text {
+  position: relative;
+  z-index: 10;
+}
+
+.waves {
+  position: absolute;
+  left: 0;
+  bottom: -6px;
+  width: 200%;
+  height: 100%; 
+  background: url("/images/wave.png") repeat-x;
+  background-size: 200px 160px;
+  transform: translate3d(0, 0, 0);
+  animation: wave 6s linear infinite;
+  pointer-events: none;
+}
+
+.wave1 {
+  opacity: 0.7;
+  animation: wave 6s linear infinite;
+}
+.wave2 {
+  opacity: 0.4;
+  bottom: -6px;
+  animation: waveReverse 10s linear infinite;
+}
+
+@keyframes wave {
+  from { transform: translate3d(0, 0, 0); }
+  to   { transform: translate3d(-50%, 0, 0); }
+}
+
+@keyframes waveReverse {
+  from { transform: translate3d(-50%, 0, 0); }
+  to   { transform: translate3d(0, 0, 0); }
+}
+.contenido-vacio {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* centro vertical */
+  align-items: center;     /* centro horizontal */
+  text-align: center;
+  gap: 20px;
 }
